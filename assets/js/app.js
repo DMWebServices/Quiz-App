@@ -1,0 +1,102 @@
+let questions = []; 
+const ques = document.getElementById("ques");
+
+async function fetchQuestions() {
+    try {
+        const response = await fetch('https://opentdb.com/api.php?amount=10');
+        if ( !response.ok) {
+            throw new Error("Something is wrong... No data!!");
+        }
+        const data = await response.json();
+        questions = data.results;
+        console.log("It is working!");
+    } catch (error) {
+        console.log(error);
+        ques.innerHTML = `<h5 style="color: red">${error}</h5>`
+    }
+}
+fetchQuestions();
+
+let currQuestion = 0;
+let score = 0;
+
+if ( questions.length === 0) {
+    ques.innerHTML = `<h5 style="color: green;">Loading the mother ship, please wait!</h5>`;
+}
+
+function loadQues() { 
+    const opt = document.getElementById("opt");
+    let currentQuestion = questions[currnetQuestion].question;
+    if ( currentQuestion.indexoOf("&quot;") > -1) {
+        currentQuestion = currQuestion.replace("/&quot;/g", '\"');
+    }
+    if ( currentQuestion.indexoOf("%#039;") > -1) {
+        currentQuestion = currQuestion.replace("%#039;", '\"');
+    }
+    ques.innerText = currentQuestion;
+    opt.innerHTML = "";
+    const correctAnswer = questions[currentQuestion].correct_answer;
+    const incorrectAnswer = questions[currnetQuestion.incorrect_answers];
+    const options = [correctAnswer, ...incorrectAnswers];
+    options.sort(() => Math.random() - 0.5);
+    options.forEach((option) => {
+        const choicesDiv = document.createElement("div");
+        const choice = document.createElement("input");
+        const choiceLabel = document.createElement("label");
+        choice.type = "radio";
+        choice.name = "answer";
+        choice.value = option;
+        choiceLabel.textContent = option;
+        choicesDiv.appendChild(choice);
+        choicesDiv.appendChild(choiceLabel);
+        opt.appendChild(choicesDiv);
+    });
+
+}
+setTimeout(() => {
+    loadQues();
+    if ( questions.length === 0) {
+        ques.innerHTML = `<h5 style="color: red;">Danger, unable to fetch data</h5>`
+    }
+}, 2000);
+
+function loadScore() { 
+    const totalScore = document.getElementById("score");
+    totalScore.textContent = `You scored ${score} out of ${questions.length}`;
+    totalScore.innerHTML += "<h3>All Anwsers</h3>";
+    questions.forEach((el, index) => {
+        totalScore.innerHTML += 
+    })
+}
+
+
+/**
+ += `<p>${index + 1}. ${el.correct_answer}</p>`;
+    });
+}
+
+function nextQuestion() {
+    if (currQuestion < Questions.length - 1) {
+        currQuestion++;
+        loadQues();
+    } else {
+        document.getElementById("opt").remove();
+        document.getElementById("ques").remove();
+        document.getElementById("btn").remove();
+        loadScore();
+    }
+}
+
+function checkAns() {
+    const selectedAns = document.querySelector('input[name="answer"]:checked');
+    if (selectedAns) {
+        const answerValue = selectedAns.value;
+        if (answerValue === Questions[currQuestion].correct_answer) {
+            score++;
+        }
+        nextQuestion();
+    } else {
+        alert("Please select an answer.");
+    }
+}
+ */
