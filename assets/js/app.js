@@ -24,20 +24,20 @@ if ( questions.length === 0) {
     ques.innerHTML = `<h5 style="color: green;">Loading the mother ship, please wait!</h5>`;
 }
 
+function decdoeHTML(str) {
+    const txt = document.createElement("textarea");
+    txt.innerHTML = str;
+    return text.value;
+}
+
 function loadQues() { 
     const opt = document.getElementById("opt");
-    let currentQuestion = questions[currnetQuestion].question;
-    if ( currentQuestion.indexoOf("&quot;") > -1) {
-        currentQuestion = currQuestion.replace("/&quot;/g", '\"');
-    }
-    if ( currentQuestion.indexoOf("%#039;") > -1) {
-        currentQuestion = currQuestion.replace("%#039;", '\"');
-    }
-    ques.innerText = currentQuestion;
+    let currentQuestion = questions[currQuestion].question;
+    ques.innerText = decdoeHTML(currentQuestion);
     opt.innerHTML = "";
-    const correctAnswer = questions[currentQuestion].correct_answer;
-    const incorrectAnswer = questions[currnetQuestion.incorrect_answers];
-    const options = [correctAnswer, ...incorrectAnswers];
+    const correctAnswer = questions[currQuestion].correct_answer;
+    const incorrectAnswer = questions[currQuestion].incorrect_answers;
+    const options = [correctAnswer, ...incorrectAnswer];
     options.sort(() => Math.random() - 0.5);
     options.forEach((option) => {
         const choicesDiv = document.createElement("div");
@@ -65,18 +65,20 @@ function loadScore() {
     totalScore.textContent = `You scored ${score} out of ${questions.length}`;
     totalScore.innerHTML += "<h3>All Anwsers</h3>";
     questions.forEach((el, index) => {
-        totalScore.innerHTML += 
-    })
-}
-
-
-/**
- += `<p>${index + 1}. ${el.correct_answer}</p>`;
+        totalScore.innerHTML += `<p>${index + 1}. ${el.correct_answer}</p>`;
     });
 }
 
+function resetBtn() {
+        const resetBtn = document.getElementById("reset-btn");
+        resetBtn.style.display = "block";
+        resetBtn.addEventListener("click", () => {
+            location.reload();
+        });
+        }
+
 function nextQuestion() {
-    if (currQuestion < Questions.length - 1) {
+    if ( currQuestion < questions.length - 1 ) {
         currQuestion++;
         loadQues();
     } else {
@@ -84,19 +86,22 @@ function nextQuestion() {
         document.getElementById("ques").remove();
         document.getElementById("btn").remove();
         loadScore();
+        resetBtn();
     }
+
 }
 
 function checkAns() {
-    const selectedAns = document.querySelector('input[name="answer"]:checked');
-    if (selectedAns) {
-        const answerValue = selectedAns.value;
-        if (answerValue === Questions[currQuestion].correct_answer) {
+    const selectedAns = document.querySelector("input[name='answer']:checked");
+    if ( selectedAns) {
+        const answerVaule = selectedAns.value;
+        if ( answerVaule === questions[currQuestion].correctAnswer) { 
             score++;
         }
         nextQuestion();
     } else {
-        alert("Please select an answer.");
+        alert("Answer a Dam question!");
     }
 }
- */
+
+
