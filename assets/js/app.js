@@ -21,13 +21,13 @@ let currQuestion = 0;
 let score = 0;
 
 if ( questions.length === 0) {
-    ques.innerHTML = `<h5 style="color: green;">Loading the mother ship, please wait!</h5>`;
+    ques.innerHTML = `<h5 style="color: #fff;text-decoration: underline">Loading the mother ship, please wait...</h5>`;
 }
 
 function decdoeHTML(str) {
     const txt = document.createElement("textarea");
     txt.innerHTML = str;
-    return text.value;
+    return txt.value;
 }
 
 function loadQues() { 

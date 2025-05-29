@@ -1,5 +1,5 @@
 body {
-    background-color: aliceblue; font-family: "Inter", sans-serif; font-optical-sizing: auto; font-weight: bold; font-style: normal; }
+    background-color: aliceblue; font-family: "Inter", sans-serif; font-optical-sizing: auto; font-weight: 400; font-style: normal; }
 .site_wrapper { display: flex; justify-content: center; align-items: center; }
 .panel {
     padding: 42px;
@@ -10,13 +10,14 @@ body {
     align-items: center;
     justify-content: center;
     color: #fff;
-    background-color: red;
+    background-color: rgb(11, 109, 148);
+    border-radius: 12px;
 }
 
 .question {
     text-align: center;
     font-size: 30px;
-    width: 50%;
+    width: 70%;
     margin-bottom: 20px;
 }
 
@@ -29,20 +30,20 @@ body {
     margin-bottom: 20px;
 }
 
-button {
-    
+button {    
     font-size: 20px;
     padding: 10px 20px;
-    background-color: #4f98c2;
-    color: white;
+    background-color: #61b7e9;
+    color: #000;
     border: none;
     cursor: pointer;
 }
 
 button:hover {
-    color: #4f98c2;
-    background-color: white;
-    border: 1 px solid #4f98c2;
+    color: #fff;
+    background-color: rgb(50, 114, 211);
+    border: 1 px solid #528fb3;
+    transition: 0.1s ease-in;
 }
 
 #score {
